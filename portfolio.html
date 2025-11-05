@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme : {
+                extend : {
+                    fontFamily : {
+                        'roboto' : ['Roboto','sans-serif']
+                    },
+                    keyframes:{
+                        contentani : {
+                            'from' : {
+                                transform:'translateX(-10%)',
+                                opacity:'0'
+                            },
+                            'to' : {
+                                transform:'translateX(0)',
+                                opacity:'1'
+                            }
+                        },
+                        social : {
+                            'from' :{
+                                transform : 'translateX(-100%)',
+                                opacity : '0'
+                            },
+                            'to' : {
+                                transform : 'translateX(0%)',
+                                opacity : '1'
+                            }
+                        },
+                        image : {
+                            'from' : {
+                                transform : 'translateX(30%)'
+                            },
+                            'to' : {
+                                transform : 'translateX(0%)',
+                            }
+                        },
+                        about : {
+                            '0%' : {
+                                transform : 'translate(100px,-50px)'
+                            },
+                            '50%' : {
+                                transform : 'translate(50px,-30px)'
+                            },
+                            '100%' : {
+                                transform : 'translate(0px,0px)'
+                            }
+                        },
+                        aboutimg : {
+                            '0%' : {
+                                transform : 'translate(-100px,-50px)'
+                            },
+                            '50%' : {
+                                transform : 'translate(-50px,-30px)'
+                            },
+                            '100%' : {
+                                transform : 'translate(0px,0px)'
+                            }
+                        },
+                        projectimg : {
+                            'from' : {
+                                transform : 'translateY(100%)'
+                            },
+                            'to' : {
+                                transform : 'translateY(0%)',
+                            }
+                        }
+                    },
+                    animation : {
+                        'homecontent' : 'contentani 1s linear',
+                        'homesocial' : 'social 0.5s linear backwards',
+                        'homeimage' : 'image 1s linear',
+                        //-------------------------------------
+                        'aboutcontent' : 'about 1s linear',
+                        'aboutimage' : 'aboutimg 1s linear',
+                        //------------------------------------
+                        'projectimage' : 'projectimg 1s linear'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-roboto">
+    <div class="w-full h-full relative">
+        <!-- Start Navbar -->
+        <div class="w-full flex items-center justify-between bg-gray-800 py-3.5 lg:px-16 px-8 fixed z-50">
+            <!-- Logo, title -->
+            <a href="#home" class="flex items-center relative z-10">
+                <img src="./porfolio.png" alt="portfolio" class="w-5 h-5 rounded-full mr-1.5">
+                <p class="font-bold text-white">Portfolio</p>
+            </a>
+            
+            <!-- Nav items -->
+            <ul class="lg:block hidden lg:flex items-center space-x-5">
+                <li data-target="home" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-500 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#home">Home</a></li>
+                <li data-target="about" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-500 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#about">About</a></li>
+                <li data-target="skills" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#skills">Skills</a></li>
+                <li data-target="project" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#project">Project</a></li>
+                <li data-target="contact" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- Nav items for smallscreen -->
+            <ul class="absolute bg-gray-800 w-full left-0 flex flex-col space-y-8 items-center -translate-y-40 pb-8 transition-all duration-300 ease-in-out lg:hidden smallscreennavitems">
+                <li data-target="home" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#home">Home</a></li>
+                <li data-target="about" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#about">About</a></li>
+                <li data-target="skills" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#skills">Skills</a></li>
+                <li data-target="project" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#project">Project</a></li>
+                <li data-target="contact" class="list-none text-white font-semibold cursor-pointer hover:text-[#38F527] relative before:absolute before:content-[''] before:w-full before:h-[2px] before:-left-[100%] before:-bottom-0 before:bg-[#38F527] hover:before:left-[0%] before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300 before:ease-in-out transition-all duration-300 ease-linear select-none activelinks"><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- hamburger menu -->
+            <i class="fa-solid fa-bars text-white text-xl lg:hidden block menu relative z-10"></i>
+        </div>
+        <!-- End Navbar -->
+    </div>
+
+    <!-- Start Home Section -->
+    <section id="home" class="w-full h-screen bg-gray-800 flex lg:flex-row flex-col space-y-0 pt-24 lg:pt-0">
+        <!-- Start Content Section -->
+        <div class="lg:w-2/3 w-full h-full flex flex-col space-y-4 items-start justify-center pl-20 pr-10">
+
+            <div class="flex flex-col space-y-4 homecontent">
+                <p class="font-bold text-white">Hello, It's Me.</p>
+                <h1 class="text-white text-4xl font-bold">Kam Sian Khual</h1>
+                <p class="text-white font-bold">And I'm a <span id="textani" class="text-[#38F527] text-xl">Web Developer</span></p>
+                <p class="text-white font-light text-sm">As a full-stack developer, I bring digital ideas to life—from crafting pixel-perfect front-end experiences to engineering robust and scalable back-end systems.</p>
+            </div>
+            <!-- social icons & download btn -->
+            <div class="w-full flex flex-col space-y-5 justify-center items-start"> 
+                <!-- social start -->
+                <div class="flex items-center space-x-3">
+                    <a href="https://www.facebook.com/Thomaskhualpi" target="_blank">
+                        <i class="fa-brands fa-facebook-f text-[#38F527] border-2 border-[#38F527] hover:bg-[#38F527] hover:text-gray-800 hover:shadow-[0_0_5px_4px_rgba(0,255,0,0.5)] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out homesocial [animation-delay:1900ms]"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/kam-sian-khual-104239276/" target="_blank">
+                        <i class="fa-brands fa-linkedin-in text-[#38F527] border-2 border-[#38F527] hover:bg-[#38F527] hover:text-gray-800 hover:shadow-[0_0_5px_4px_rgba(0,255,0,0.5)] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out homesocial [animation-delay:1600ms]"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@codeflow23?is_from_webapp=1&sender_device=pc" target="_blank">
+                        <i class="fa-brands fa-tiktok text-[#38F527] border-2 border-[#38F527] hover:bg-[#38F527] hover:text-gray-800 hover:shadow-[0_0_5px_4px_rgba(0,255,0,0.5)] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out homesocial [animation-delay:1300ms]"></i>
+                    </a>
+                    <a href="https://github.com/kamsiankhual" target="_blank">
+                        <i class="fa-brands fa-github text-[#38F527] border-2 border-[#38F527] hover:bg-[#38F527] hover:text-gray-800 hover:shadow-[0_0_5px_4px_rgba(0,255,0,0.5)] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out homesocial [animation-delay:1000ms]"></i>
+                    </a>
+                </div>
+                <!-- social end -->
+
+                <!-- Download Button -->
+                <a href="./myresume.pdf" target="_blank" download>
+                    <button class="bg-[#38F527] px-3 py-1 rounded-full shadow-[0_0_5px_4px_rgba(0,255,0,0.5)] homesocial [animation-delay:500ms]">Download CV</button>
+                </a>
+            </div>
+        </div>
+        <!-- End Content Section -->
+
+        <!-- Start Imgage -->
+        <div class="lg:w-1/3 w-full h-full flex items-center justify-center homeimage">
+            <img src="./mypicture.jpg" alt="female" class="w-56 h-56 rounded-full ">
+        </div>
+            <!-- End Image -->
+    </section>
+    <!-- End Home Section -->
+    
+    <!-- Start About Section -->
+    <section id="about" class="w-full bg-gray-700 flex lg:flex-row flex-col-reverse items-center">
+        <!-- Start Image -->
+        <div class="lg:w-1/3 w-full h-full flex items-center justify-center aboutimage pb-5">
+            <img src="./mypicture.jpg" alt="female" class="w-56 h-56 rounded-full ">
+        </div>
+        <!-- End Image -->
+
+        <!-- Start About Content -->
+        <div class="lg:w-2/3 h-full flex flex-col items-start justify-center space-y-5 lg:pr-20 p-8 aboutcontent">
+            <h1 class="text-white font-bold text-4xl">About <span class="text-[#38F527]">Me</span></h1>
+            <span class="text-white font-bold text-xl">Full-stack Developer</span>
+            <p class="text-white text-left">I'm a full-stack developer who loves the challenge of building complete, functional, and scalable web applications from the ground up. I am passionate about the entire development lifecycle, from architecting a robust back-end and designing databases to creating responsive, pixel-perfect front-end experiences that users enjoy.</p>
+
+            <div id="more-about-text" class="w-full mt-8 space-y-3 hidden">
+
+                <!-- title -->
+                <h2 class="text-white font-bold text-2xl">My Background</h2>
+
+                <div class="w-full border border-gray-800 shadow-[0_4px_3px_4px_rgba(0,0,0,0.8)]">
+                    <!-- Tabs -->
+                    <div class="w-full h-12 bg-black/20 flex items-center">
+                        <span onclick="gettab(event,'education')" id="autoclick" class="tablinks h-full flex items-center px-3 relative cursor-pointer text-white hover:bg-gray-800 transition-all duration-300">Education</span>
+                        <span onclick="gettab(event,'experience')" class="tablinks h-full flex items-center px-3 relative cursor-pointer text-white hover:bg-gray-800 transition-all duration-300">Experience</span>
+                        <span onclick="gettab(event,'goals')" class="tablinks h-full flex items-center px-3 relative cursor-pointer text-white hover:bg-gray-800 transition-all duration-300">Goals</span>
+                    </div>
+                    
+                    <!-- Contents -->
+                    <div>
+
+                        <div id="education" class="p-3 flex flex-col space-y-3 bg-gray-800 mycontent">
+                            <div class="flex justify-between">
+                                <h1 class="font-bold text-xl text-white">Education</h1>
+                                <span class="exit text-2xl text-white hover:text-red-500 cursor-pointer">&times;</span>
+                            </div>
+                            <p class="text-justify text-white font-light text-xs">I am currently pursuing my Bachelor's Degree in Computer Networks at Auston College Myanmar. My coursework has given me a strong foundation in data structures, algorithms, and web development principles.</p>
+                        </div>
+
+                        <div id="experience" class="p-3 flex flex-col space-y-3 bg-gray-800 mycontent">
+                            <div class="flex justify-between">
+                                <h1 class="font-bold text-xl text-white">Experience</h1>
+                                <span class="exit text-2xl text-white hover:text-red-500 cursor-pointer">&times;</span>
+                            </div>
+                            <p class="text-justify text-white font-light text-xs">Beyond my personal projects, I am a learner of programming concept at Dataland Technology where I contributed to a live production application. This taught me the importance of clean code, version control with Git, and working in a team environment.</p>
+                        </div>
+
+                        <div id="goals" class="p-3 flex flex-col space-y-3 bg-gray-800 mycontent">
+                            <div class="flex justify-between">
+                                <h1 class="font-bold text-xl text-white">Goals</h1>
+                                <span class="exit text-2xl text-white hover:text-red-500 cursor-pointer">&times;</span>
+                            </div>
+                            <p class="text-justify text-white font-light text-xs">My goal is to secure a full-time role as a web developer where I can continue to learn, grow, and contribute to meaningful projects. I am especially interested in back-end development and cloud technologies.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <button id="read-more-btn" class="bg-[#38F527] px-3 py-1 rounded-full shadow-[0_0_5px_4px_rgba(0,255,0,0.5)]">Read More...</button>
+        </div>
+        <!-- End About Content -->
+
+    </section>
+    <!-- End About Section -->
+
+
+    <!-- Start Skill Section -->
+    <section id="skills" class="w-full bg-gray-800">
+        <div class="flex flex-col space-y-5 w-full items-center pt-20 pb-10">
+            <h1 class="text-white font-bold text-3xl">My <span class="text-[#38F527]">Skills</span></h1>
+            
+            <!-- Start skill -->
+            <div class="flex lg:flex-row flex-col items-center space-y-10 w-full p-5">
+
+                <!-- tech skill -->
+                <div class="lg:w-2/3 md:w-3/4 w-full mx-auto flex flex-col space-y-3 lg:px-32 px-5">
+
+                    <h1 class="text-center font-bold text-white">Technical <span class="text-[#38F527]">Skills</span></h1>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./html.png" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['97%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[97%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">HTML</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./tailwind.png" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['95%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[95%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">TailwindCSS</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./js.png" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['73%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[73%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">JavaScript</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./php.png" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['90%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[90%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">PHP</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./laravel.avif" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 w-[78%] h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['78%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[78%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">Laravel</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./python.webp" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['50%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[50%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">Python</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./mysql.png" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['80%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[80%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">MySQL</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 items-center px-5 py-2 rounded-lg bg-gray-700">
+                        <img src="./mongodb.png" alt="html" class="w-12 h-12 object-scale rounded-full">
+                        <!-- progress -->
+                        <div class="w-full h-1 bg-gray-800 rounded-full relative">
+                            <div class="w-0 h-full skill-bar-inner bg-[#38F527] rounded-full relative transition-all duration-1000 ease-in-out before:absolute before:content-['30%'] before:left-[97%] before:top-[-350%] before:text-white before:text-xs" data-width="w-[30%]"></div>
+                            <p class="text-white text-xs absolute -top-[350%]">MongoDB</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- soft skill -->
+                <div class="lg:w-1/3 md:w-1/4 w-full mx-auto flex flex-col space-y-3 px-5">
+                    <h1 class="text-white font-bold text-center">Soft <span class="text-[#38F527]">Skills</span></h1>
+
+                    <!-- soft skill -->
+                    <div class="grid grid-cols-2 gap-y-10 gap-x-20 mx-auto">
+                        <!-- circle progress -->
+                        <div class="w-20 h-20 rounded-full p-1 bg-gray-900 soft-skill-circle" data-percent="78">
+                            <div class="w-full h-full rounded-full bg-gray-900 flex flex-col items-center justify-center text-white relative">
+                                <span class="text-sm font-bold soft-skill-percent">0%</span>
+                                <span class="text-sm absolute bottom-[-40%]">Creativity</span>
+                            </div>
+                        </div>
+
+                        <div class="w-20 h-20 rounded-full p-1 bg-gray-900 soft-skill-circle" data-percent="70">
+                            <div class="w-full h-full rounded-full bg-gray-900 flex flex-col items-center justify-center text-white relative">
+                                <span class="text-sm font-bold soft-skill-percent">0%</span>
+                                <span class="text-sm absolute bottom-[-40%]">Communication</span>
+                            </div>
+                        </div>
+
+                        <div class="w-20 h-20 rounded-full p-1 bg-gray-900 soft-skill-circle" data-percent="94">
+                            <div class="w-full h-full rounded-full bg-gray-900 flex flex-col items-center justify-center text-white relative">
+                                <span class="text-ms font-bold soft-skill-percent">0%</span>
+                                <span class="text-sm whitespace-nowrap absolute bottom-[-40%]">Time Management</span>
+                            </div>
+                        </div>
+
+                        <div class="w-20 h-20 rounded-full p-1 bg-gray-900 soft-skill-circle" data-percent="73">
+                            <div class="w-full h-full rounded-full bg-gray-900 flex flex-col items-center justify-center text-white relative">
+                                <span class="text-sm font-bold soft-skill-percent">0%</span>
+                                <span class="text-sm whitespace-nowrap absolute bottom-[-40%]">Critical Thinking</span>
+                            </div>
+                        </div>
+
+                        <div class="w-20 h-20 rounded-full p-1 bg-gray-900 soft-skill-circle" data-percent="82">
+                            <div class="w-full h-full rounded-full bg-gray-900 flex flex-col items-center justify-center text-white relative">
+                                <span class="text-sm font-bold soft-skill-percent">0%</span>
+                                <span class="text-sm whitespace-nowrap absolute bottom-[-40%]">Problem Solving</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End Skill Section -->
+
+    <!-- Start Project Section -->
+    <section id="project" class="w-full bg-gray-700 ">
+        <div class="w-full flex flex-col space-y-20 items-center py-16">
+            <!-- title -->
+            <h1 class="text-white font-bold text-3xl">Latest <span class="text-[#38F527]">Project</span></h1>
+
+            <!-- Card Box -->
+            <div class="sm:w-2/3 md:w-11/12 lg:w-4/5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5 mx-auto">
+                
+                <div class="w-full h-80 overflow-hidden rounded-lg shadow-[0_0_4px_8px_rgba(0,0,0,0.5)] relative group [animation-delay:100ms] projectimage">
+                    <!-- image bg -->
+                    <img src="./finance.jpg" alt="financetracker" class="w-full h-full object-scale">
+
+                    <!-- content -->
+                    <div class="flex flex-col space-y-2 items-center justify-center w-full h-full translate-y-[100%] group-hover:translate-y-[0%] group-hover:bg-[#38F527]/90 absolute top-0 left-0 transition-all duration-500 ease-in-out">
+                        <h1 class="text-white font-bold text-xl">Finance Tracker</h1>
+                        <p class="text-center text-white">My Bachelor's final project, this full-stack app tracks personal finances and uses a ML model to predict spending patterns. Built with PHP, Laravel, and MySQL.</p>
+                        <a href="https://financetracker.shop" target="_blank">
+                            <button type="button" class="w-10 h-10 bg-white rounded-full"><i class="fa-solid fa-up-right-from-square"></i></button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-full h-80 overflow-hidden rounded-lg shadow-[0_0_4px_8px_rgba(0,0,0,0.5)] relative group [animation-delay:200ms] projectimage">
+                    <!-- image bg -->
+                    <img src="./portfoliobg.png" alt="financetracker" class="w-full h-full object-scale">
+
+                    <!-- content -->
+                    <div class="flex flex-col space-y-2 items-center justify-center w-full h-full translate-y-[100%] group-hover:translate-y-[0%] group-hover:bg-[#38F527]/90 absolute top-0 left-0 transition-all duration-500 ease-in-out">
+                        <h1 class="text-white font-bold text-xl">PortFolio</h1>
+                        <p class="text-center text-white">The very site you are on now! A fully responsive personal portfolio built from scratch to showcase my projects and front-end skills using HTML, Tailwind CSS, and JavaScript.</p>
+                        <a href="#" target="_blank">
+                            <button type="button" class="w-10 h-10 bg-white rounded-full"><i class="fa-solid fa-up-right-from-square"></i></button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-full h-80 md:col-span-2 lg:col-span-1 overflow-hidden rounded-lg shadow-[0_0_4px_8px_rgba(0,0,0,0.5)] relative group [animation-delay:300ms] projectimage">
+                    <!-- image bg -->
+                    <img src="./todo.jpg" alt="financetracker" class="w-full h-full object-scale">
+
+                    <!-- content -->
+                    <div class="flex flex-col space-y-2 items-center justify-center w-full h-full translate-y-[100%] group-hover:translate-y-[0%] group-hover:bg-[#38F527]/90 absolute top-0 left-0 transition-all duration-500 ease-in-out">
+                        <h1 class="text-white font-bold text-xl">Todo List</h1>
+                        <p class="text-center text-white">A clean and simple task management app built with HTML, Tailwind CSS, and JavaScript. It uses browser LocalStorage to persist all tasks.</p>
+                        <a href="#" target="_blank">
+                            <button type="button" class="w-10 h-10 bg-white rounded-full"><i class="fa-solid fa-up-right-from-square"></i></button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End Project Section -->
+
+    <!-- Start Contact Section -->
+    <section id="contact" class="w-full h-screen bg-gray-800">
+        <div class="w-full flex flex-col items-center justify-center">
+
+            <form action="#" method="" class="mt-20 w-full max-w-[500px] md:max-w-none md:w-2/4 lg:w-1/2 mx-auto flex flex-col space-y-5 p-5">
+                <h1 class="text-white font-bold text-2xl text-center">Contact <span class="text-[#38F527]">Me!</span></h1>
+                
+                <div class="w-full flex lg:flex-row flex-col items-center justify-center gap-5 relative">
+                    <div class="w-full lg:w-1/2">
+                        <input type="text" class="w-full bg-gray-700 focus:outline-none text-white p-2 rounded-lg" placeholder="Username">
+                    </div>
+
+                    <div class="w-full lg:w-1/2">
+                        <input type="text" class="w-full bg-gray-700 focus:outline-none text-white p-2 rounded-lg" placeholder="Email">
+                    </div>
+                </div>
+
+                <!-- Text area -->
+                <textarea name="message" id="message" class="w-full rounded-lg bg-gray-700 focus:outline-none px-2 py-3 text-white" rows="10" placeholder="write something here..."></textarea>
+            
+                <button type="button" class="max-w-sm mx-auto bg-[#38F527] px-3 py-1 rounded-full shadow-[0_0_5px_4px_rgba(0,255,0,0.5)] homesocial [animation-delay:500ms]">Send Message</button>
+            </form>
+
+        </div>
+    </section>
+    <!-- End Contact Section -->
+
+
+    <!-- Start Footer Section -->
+    <footer class="w-full lg:h-14 h-16 bg-gray-700 px-10 py-2">
+        <div class="h-full flex lg:flex-row flex-col-reverse lg:items-center lg:justify-between items-center justify-center gap-5">
+            
+            <p class="text-white text-xs md:text-sm lg:text-base">Copyright &copy; <span class="autoyear"></span> by CodeFlow <span>All Rights Reserved</span></p>
+            <a href="#home" id="backtotop" class="bg-[#38F527] px-3 py-1 rounded-full shadow-[0_0_5px_4px_rgba(0,255,0,0.5)] opacity-0 fixed bottom-3 right-10 transition-all duration-1000 ease-in-out"><i class="fas fa-arrow-up"></i></a>
+        
+        </div>
+    </footer>
+    <!-- End Footer Section -->
+
+
+
+    <script>
+        //Start BurgerMenu
+        const burgurmenu = document.querySelector('.menu');
+        burgurmenu.addEventListener('click',function(){
+            invokeburger();
+        });
+
+        function invokeburger(){
+            burgurmenu.classList.toggle('fa-bars');
+            burgurmenu.classList.toggle('fa-x');
+
+            document.querySelector('.smallscreennavitems').classList.toggle('translate-y-40');
+            document.querySelector('.smallscreennavitems').classList.toggle('-translate-y-40'); 
+        }
+        //End Burger menu
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //Start Nav activelinks
+        const getallinks = document.querySelectorAll('.activelinks');
+
+        getallinks.forEach(function(link){
+            link.addEventListener('click',function(){
+                getallinks.forEach(function(otherlink){
+                    otherlink.classList.remove('text-[#38F527]');
+                    otherlink.classList.add('text-white');
+                    
+                    //for the underline
+                    otherlink.classList.add('before:opacity-0');
+                    otherlink.classList.remove('before:left-0');
+                });
+
+                this.classList.remove('text-white')
+                this.classList.add('text-[#38F527]');
+
+                //for the underline
+                this.classList.add('before:left-0');
+                this.classList.remove('before:opacity-0');
+
+                invokeburger();
+            });
+        });
+        //End Nav Activelinks
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //Start Dynamic Activelinks Change
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.activelinks');
+                        
+            // This function will run on every scroll
+            function updateActiveLink() {
+                const scrollY = window.scrollY;
+                
+                // This is a "trigger point" offset. Since your nav is fixed,
+                // you want to trigger the "active" state when the section is
+                // just below the navbar, not at the very top of the window.
+                // Adjust this value (e.g., 100) to match your navbar's height.
+                const navOffset = 52; 
+
+                // Keep track of which section is currently active
+                let currentActiveSectionId = '';
+
+                // Loop through each section
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - navOffset;
+                    const sectionHeight = section.offsetHeight;
+
+                    // Check if the scroll position is within this section's bounds
+                    if (scrollY >= sectionTop && scrollY < (sectionTop + sectionHeight)) {
+                        currentActiveSectionId = section.getAttribute('id');
+                    }
+                });
+
+                // Now, update the classes on all links
+                navLinks.forEach(link => {
+                    // Remove active class from all links
+                    link.classList.remove('text-[#38F527]');
+                    link.classList.add('text-white');
+
+                    link.classList.add('before:opacity-0');
+                    link.classList.remove('before:left-0');
+
+                    // Add the active class to the link that matches the current section
+                    if (link.dataset.target === currentActiveSectionId) {
+                        link.classList.remove('text-white')
+                        link.classList.add('text-[#38F527]');
+
+                        //for the underline
+                        link.classList.add('before:left-0');
+                        link.classList.remove('before:opacity-0');
+                    }
+                });
+            }
+
+            // Run the function once on load and on every scroll
+            updateActiveLink(); // Run once when the page loads
+            window.addEventListener('scroll', updateActiveLink); // Run on every scroll
+        });
+        //End Dynamic Activelinks Change
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //Start Textanimation
+        const contents = ['Web Developer.','Blogger.'];
+        const colors = ['green','red'];
+        const gettextani = document.querySelector('#textani');
+
+        //console.log(colors[contents.indexOf('a Web Developer')]); // 0
+
+        function* generator(){
+            let idx = 0;
+            while(true){
+                yield idx++;
+
+                if(idx > 1){
+                    idx = 0
+                }
+            }
+        }
+
+        const genfun = generator();
+
+        showwords(contents[genfun.next().value]);
+
+        function showwords(word){
+            //split the word
+            let x = 0;
+            //clear the text 
+            gettextani.innerHTML = '';
+            //match the color
+            gettextani.classList.add('text-'+colors[contents.indexOf(word)]+'-500');
+            //replace the word with single char
+            let showinterval = setInterval(function(){
+                //check for stop
+                if(x >= word.length){
+                    clearInterval(showinterval);
+                    deletewords();
+                }else{
+                    gettextani.innerHTML += word[x];
+                    x++;
+                }
+            },300);
+        }
+
+        
+        function deletewords(word){
+            //taking the full word after single char
+            let getword = gettextani.innerHTML;
+
+            //delete the word from the end
+            let getlastid = getword.length-1;
+
+            //replace the word with single char
+            let deleteinterval = setInterval(function(){
+                //check for stop
+                if(getlastid >= 0 ){
+                    gettextani.innerHTML = gettextani.innerHTML.substring(0,gettextani.innerHTML.length-1);
+                    getlastid--;
+                }else{
+                    //remove the color
+                    gettextani.classList.remove('text-'+colors[contents.indexOf(getword)]+'-500');
+                    clearInterval(deleteinterval);
+                    //call the other word
+                    showwords(contents[genfun.next().value]);
+                }
+            },100);
+        }
+        //End of Text animation
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //Start Home Animation
+        function handleHomeAnimation() {
+            const homescroll = window.scrollY;
+
+            const homeContent = document.querySelector('.homecontent');
+            const homeImage = document.querySelector('.homeimage');
+            const homeSocials = document.querySelectorAll('.homesocial');
+
+            if (homescroll === 0) {
+                homeContent.classList.add('animate-homecontent');
+                homeImage.classList.add('animate-homeimage');
+                homeSocials.forEach(function(social) {
+                    social.classList.add('animate-homesocial');
+                });
+            } else {
+                homeContent.classList.remove('animate-homecontent');
+                homeImage.classList.remove('animate-homeimage');
+                homeSocials.forEach(function(social) {
+                    social.classList.remove('animate-homesocial');
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', handleHomeAnimation);
+        window.addEventListener('scroll', handleHomeAnimation);
+        //End About Animation
+
+        //------------------------------------------------------------------------------------------------------------  
+
+        //Start About Animatio
+        function handleAboutAnimation() {
+            const aboutscrollY = window.scrollY;
+
+            const aboutSection = document.getElementById('about');
+            const aboutContent = document.querySelector('.aboutcontent');
+            const aboutImage = document.querySelector('.aboutimage');
+
+            // Safety check in case elements don't exist
+            if (!aboutSection || !aboutContent || !aboutImage) {
+                return;
+            }
+
+            const navOffset = 70; // Use the same offset as your scrollspy
+            const sectionTop = aboutSection.offsetTop - navOffset;
+            const sectionHeight = aboutSection.offsetHeight;
+            const sectionBottom = sectionTop + sectionHeight;
+
+            // 3. Check if scroll is *INSIDE* the section
+            if (aboutscrollY >= sectionTop && aboutscrollY < sectionBottom) {
+                // User is looking at the "About" section
+                aboutContent.classList.add('animate-aboutcontent');
+                aboutImage.classList.add('animate-aboutimage');
+            } else {
+                // User is *not* looking at the "About" section
+                aboutContent.classList.remove('animate-aboutcontent');
+                aboutImage.classList.remove('animate-aboutimage');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', handleAboutAnimation);
+        window.addEventListener('scroll', handleAboutAnimation);
+        
+                    //------------------------------------------------------------------------------------------------------------
+
+        // Start Read More Button
+        const readMoreBtn = document.getElementById('read-more-btn');
+        const moreAboutText = document.getElementById('more-about-text');
+        let tabsInitialized = false; // <-- 1. Add this "guard" variable
+
+        if (readMoreBtn) {
+            readMoreBtn.addEventListener('click', function() {
+                moreAboutText.classList.toggle('hidden');
+
+                if (moreAboutText.classList.contains('hidden')) {
+                    readMoreBtn.textContent = 'Read More...';
+                } else {
+                    readMoreBtn.textContent = 'Read Less...';
+
+                    // 2. Add this "if" block
+                    if (!tabsInitialized) {
+                        document.getElementById('autoclick').click(); // 3. Run the autoclick
+                        tabsInitialized = true; // 4. Set the guard
+                    }
+                }
+            });
+        }
+
+
+        const getcontents = document.querySelectorAll('.mycontent');
+        const getlinks = document.querySelectorAll('.tablinks');
+        const getxbtn = document.querySelectorAll('.exit');
+
+        const activecolor = ['bg-gray-800'];
+
+        function gettab(e,content){
+
+            const getcontentcolor = document.getElementById(content);
+            
+            // remove all bg-sky-500
+            for(let x=0; x < getlinks.length; x++){
+                getlinks[x].classList.remove(activecolor);
+
+                getxbtn[x].addEventListener('click',function(){
+                    this.parentElement.parentElement.classList.add('hidden');
+                });
+            }
+
+            if(getcontentcolor.classList.contains('bg-gray-800')){
+                e.target.classList.add('bg-gray-800');
+            }
+
+            getcontents.forEach(function(content){
+                content.classList.add('hidden')
+            });
+
+            document.getElementById(content).classList.remove('hidden');
+
+        }
+
+        document.getElementById('autoclick').click();
+        //End Read More Button
+
+        //End About Animation
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //Start Skills Animation 
+
+        // This "guard" variable prevents the animation from running over and over
+        let skillsHaveAnimated = false; 
+
+        function handleSkillsAnimation() {
+            const skillscrollY = window.scrollY;
+            
+            const skillsSection = document.getElementById('skills'); 
+
+            if (!skillsSection) return; // Exit if section isn't found
+
+            const navOffset = 70; // Your navbar height
+            const sectionTop = skillsSection.offsetTop - navOffset;
+            const sectionHeight = skillsSection.offsetHeight;
+            const sectionBottom = sectionTop + sectionHeight;
+
+            // Check if user is scrolling INTO the section
+            if (skillscrollY >= sectionTop && skillscrollY < sectionBottom && !skillsHaveAnimated) {
+                skillsHaveAnimated = true; // Set guard
+
+                // 1. Animate Linear Bars (NEW LOGIC)
+                document.querySelectorAll('.skill-bar-inner').forEach(bar => {
+                    // Get the final width (e.g., "w-[97%]") from the data-attribute
+                    const finalWidth = bar.dataset.width; 
+                    if (finalWidth) {
+                        bar.classList.add(finalWidth); // ADD the final width class
+                    }
+                });
+
+                // 2. Animate Circular Bars (This logic is correct)
+                document.querySelectorAll('.soft-skill-circle').forEach(circle => {
+                    const percentText = circle.querySelector('.soft-skill-percent');
+                    const finalPercent = parseInt(circle.dataset.percent, 10);
+                    let currentPercent = 0;
+
+                    const interval = setInterval(() => {
+                        currentPercent++;
+                        percentText.textContent = `${currentPercent}%`;
+                        circle.style.background = `conic-gradient(#38F527 ${currentPercent}%, #111827 0%)`; // Using gray-900's hex
+
+                        if (currentPercent >= finalPercent) {
+                            clearInterval(interval);
+                        }
+                    }, 20);
+                });
+
+            } else if (skillscrollY < sectionTop || skillscrollY >= sectionBottom) {
+                // User has scrolled OUT of the section
+                if (skillsHaveAnimated) { 
+                    skillsHaveAnimated = false; // Reset guard
+
+                    // 1. Reset Linear Bars (NEW LOGIC)
+                    document.querySelectorAll('.skill-bar-inner').forEach(bar => {
+                        const finalWidth = bar.dataset.width;
+                        if (finalWidth) {
+                            bar.classList.remove(finalWidth); // REMOVE the final width class
+                        }
+                    });
+
+                    // 2. Reset Circular Bars (This logic is correct)
+                    document.querySelectorAll('.soft-skill-circle').forEach(circle => {
+                        const percentText = circle.querySelector('.soft-skill-percent');
+                        percentText.textContent = '0%';
+                        circle.style.background = '#111827'; // Reset to gray-900
+                    });
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', handleSkillsAnimation);
+        window.addEventListener('scroll', handleSkillsAnimation);
+
+        //End Skills Animation
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //Start Project Animation
+
+        function handleProjectAnimation(){
+            const projectscrollY = window.scrollY;
+            
+            const projectimages = document.querySelectorAll('.projectimage');
+            const projectsection = document.getElementById('project');
+
+            const navOffset = 70;
+            const pjTop =  projectsection.offsetTop - navOffset;
+            const pjHeight = projectsection.offsetHeight;
+            const pjBottom = pjTop + pjHeight;
+
+            if(projectscrollY >= pjTop  && projectscrollY < pjBottom){
+                projectimages.forEach(function(image){
+                    image.classList.add('animate-projectimage');
+                });
+            }else{
+                projectimages.forEach(function(image){
+                    image.classList.remove('animate-projectimage');
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', handleProjectAnimation);
+        window.addEventListener('scroll', handleProjectAnimation);
+        //End Project Animation
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //Start Footer Section
+        const backtotop = document.getElementById('backtotop');
+
+        backtotop.addEventListener('click',function(){
+            //invokeburger();
+            burgurmenu.classList.add('fa-bars');
+            document.querySelector('.smallscreennavitems').classList.remove('translate-y-40');
+            document.querySelector('.smallscreennavitems').classList.add('-translate-y-40'); 
+        });
+
+        window.addEventListener('scroll',function(){
+            const scrollval = window.scrollY;
+            if(scrollval >= 2300){
+                backtotop.classList.remove('opacity-0');
+                backtotop.classList.add('opacity-100');
+            }else{
+                backtotop.classList.add('opacity-0');
+                backtotop.classList.remove('opacity-100');
+            }
+        });
+
+        //change auto year
+        const getautoyear = new Date().getFullYear();
+        document.querySelector('.autoyear').innerHTML = getautoyear;
+        //End Footer Section
+
+    </script>
+</body>
+</html>
